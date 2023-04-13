@@ -1,0 +1,8 @@
+<%= form_with(model: Message.new) do |form| %>
+  <div class="input-group">
+    <%= form.text_field :content, class: "form-control", placeholder: "Digite uma mensagem..." %>
+    <div class="input-group-append">
+      <%= form.submit "Enviar", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

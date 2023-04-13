@@ -1,0 +1,22 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-3">
+        <div class="card-header">CHAT | Bem vindo, <%= @nick  %> 
+          <span style="float: right;"><i class="fa-solid fa-users"></i> 2</span> 
+        </div>
+        <div class="card-body" style="height: 400px; overflow-y: auto;" id="chat-box">
+        
+          <% @messages.each do |message|%>
+            <%= render "messages/message", message: message%>
+          <% end %>
+        </div>
+        <div class="card-footer">
+          <%= render "messages/form", user: @nick%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
