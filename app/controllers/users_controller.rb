@@ -2,6 +2,9 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+
+
+        @users = User.all
     end
 
     def create
@@ -18,8 +21,18 @@ class UsersController < ApplicationController
     end
 
 
-    private
+    def destroy
+        user = session[:user_id]
+        @current_user = User.find_by(id: user)
+        
+        @current_user.destroy
+        redirect_to root_path
+    end
+    
 
+
+    private
+    
 
     def user_params
         params.require(:user).permit(:nick)

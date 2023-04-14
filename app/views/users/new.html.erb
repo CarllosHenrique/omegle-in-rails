@@ -2,13 +2,27 @@
   <div class="row align-items-center h-100">
     <div class="col-md-6 mx-auto">
       <h1 class="text-center mb-4">Put your nickname</h1>
-      <%= form_with model: @user do |f|%>
+      <%= form_with model: @user, remote: true do |f|%>
         <div class="form-group">
           <%= f.text_field :nick, class: "form-control form-control-lg text-center", placeholder: "Nick here" %>
         </div>
         <br>
-        <%= f.submit "Join chat", class: "btn btn-primary btn-block btn-lg" %>
+        <%= f.submit "Join chat", data: {disable_with: false},  class: "btn btn-primary btn-block btn-lg" %>
       <% end %>
+      <br>
+      <div class="card">
+        <div class="card-header">Logged users</div>
+        <div class="card-body" style="height: 200px; overflow-y: auto;">
+          <ul class="list-group">
+          <%= turbo_stream_from "users" %>
+          <div id="users">
+            <%= render @users %>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </div>

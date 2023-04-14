@@ -3,20 +3,30 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card mb-3">
-        <div class="card-header">CHAT | Bem vindo, <%= @nick  %> 
-          <span style="float: right;"><i class="fa-solid fa-users"></i> 2</span> 
+        <div class="card-header">CHAT | Bem vindo, <%= @nick %> 
+          <span style="float: right;"> <%= link_to "Leave chat", user_path(@user), data: {turbo_method: :delete} %></span> 
         </div>
         <div class="card-body" style="height: 400px; overflow-y: auto;" id="chat-box">
-        
-          <% @messages.each do |message|%>
-            <%= render "messages/message", message: message%>
-          <% end %>
+          <%= turbo_stream_from "messages" %>
+          <div id="messages">
+            <%= render @messages %>
+          </div>
         </div>
+
+        <script type="text/javascript">
+          document.addEventListener("turbo:load", function() {
+            var objDiv = document.getElementById("chat-box");
+            objDiv.scrollTop = objDiv.scrollHeight;
+          });
+        </script>
+
         <div class="card-footer">
-          <%= render "messages/form", user: @nick%>
+          <%= render "messages/form" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 

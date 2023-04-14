@@ -1,8 +1,8 @@
-<%= form_with(model: Message.new) do |form| %>
+<%= form_with(model: Message.new, remote: true) do |form| %>
   <div class="input-group">
     <%= form.text_field :content, class: "form-control", placeholder: "Digite uma mensagem..." %>
     <div class="input-group-append">
-      <%= form.submit "Enviar", class: "btn btn-primary" %>
+      <%= form.submit "Send", data: {disable_with: false}, class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>
